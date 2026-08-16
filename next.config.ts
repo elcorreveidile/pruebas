@@ -1,18 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.pexels.com",
-      },
-    ],
-  },
+  // Todo el contenido multimedia se sirve localmente desde /public/media,
+  // por lo que no se necesitan dominios remotos para las imágenes.
 };
 
 export default nextConfig;

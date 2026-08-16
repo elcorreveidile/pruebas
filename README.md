@@ -1,56 +1,75 @@
 # La Fábrica de Sonrisas — Granada (migración a Next.js)
 
 Migración del sitio WordPress [lafabricadesonrisasgranada.com](https://www.lafabricadesonrisasgranada.com)
-(clínica dental en Granada) a **Next.js**, siguiendo el mismo flujo usado en
-otras migraciones del grupo (laskentukianas, olvidos, reinaldo).
+(clínica dental de autor en Granada) a **Next.js**.
 
-> ⚠️ **Scaffold en desarrollo.** Estructura y estilos base montados; el contenido
-> real (textos, imágenes, tratamientos, datos de contacto) está pendiente de
-> importar desde el sitio original. `noindex, nofollow` activo en todo el sitio.
+El contenido real (textos, imágenes, tratamientos, equipo, blog y datos de
+contacto) se ha importado desde el sitio original vía la API `wp-json` y se
+sirve de forma estática y autocontenida (imágenes locales en `public/media`).
+
+> ℹ️ El sitio se mantiene con `noindex, nofollow` mientras no sea la web
+> productiva, para no competir con el dominio original en buscadores.
 
 ---
+
+## Origen (WordPress)
+
+- **Tema:** Divi (Elegant Themes) + DiviFlash.
+- **Plugins detectados:** Rank Math SEO, Complianz (cookies/RGPD), Forminator
+  (formularios), WP Smush (imágenes), Redirection, WP 2FA.
+- **Contenido importado:** 22 páginas (13 tratamientos + institucionales +
+  legales), 14 entradas de blog y 53 imágenes.
+
+El scraping y la conversión Divi → modelo de bloques se hicieron con scripts
+puntuales; el resultado vive en `src/content/*.json` (versionado), por lo que
+el sitio **no depende de la web original en tiempo de ejecución**.
 
 ## Stack
 
 - **Next.js 16 (App Router)** + TypeScript
 - **Tailwind CSS v4**
-- **Vercel** (despliegue previsto)
-- Backend de datos (leads / tratamientos) previsto sobre **Supabase**, aún sin conectar.
-
----
+- Tipografías **Montserrat** (títulos) + **Nunito Sans** (texto), vía `next/font`
+- Paleta de marca importada del original (coral `#ff7f67`, crema, salvia, teal)
 
 ## Instalación local
 
 ```bash
 npm install
-cp .env.local.example .env.local   # edita los valores
+cp .env.local.example .env.local   # opcional
 npm run dev
 ```
 
 Abre http://localhost:3000
 
----
-
 ## Estructura de rutas
 
-| Ruta                     | Estado    | Descripción                                  |
-| ------------------------ | --------- | -------------------------------------------- |
-| `/`                      | scaffold  | Home con hero + bloques de servicios         |
-| `/tratamientos`          | scaffold  | Listado de tratamientos                      |
-| `/tratamientos/[slug]`   | scaffold  | Detalle de tratamiento                       |
-| `/equipo`                | scaffold  | Equipo de la clínica                         |
-| `/contacto`              | scaffold  | Datos de contacto + (futuro) formulario/mapa |
-| `/cita`                  | scaffold  | Formulario de solicitud de cita (pendiente)  |
-| `/legal/aviso-legal`     | scaffold  | Aviso legal                                  |
-| `/legal/privacidad`      | scaffold  | Política de privacidad                       |
-| `/legal/cookies`         | scaffold  | Política de cookies                          |
+Se conservan las URLs originales del sitio WordPress.
 
----
+| Ruta                                   | Descripción                                   |
+| -------------------------------------- | --------------------------------------------- |
+| `/`                                    | Portada (hero, servicios, método BHA, equipo) |
+| `/{tratamiento}-en-granada`            | Páginas de tratamiento (ortodoncia, implantes…) |
+| `/quienes-somos`, `/el-equipo`         | Institucionales                               |
+| `/solidarios-y-sostenibles`, `/medios` | Institucionales                               |
+| `/primera-visita`, `/contacto`         | Cita y contacto (con mapa)                     |
+| `/blog`, `/blog/[slug]`                | Blog (14 entradas)                            |
+| `/aviso-legal`, `/politica-de-privacidad`, `/politica-de-cookies` | Legales |
 
-## Pendiente (siguiente sesión con red abierta)
+Las páginas de contenido se generan de forma estática desde
+`src/content/pages.json` y `src/content/posts.json` mediante la ruta dinámica
+`src/app/[slug]/page.tsx` y un renderizador de bloques
+(`src/components/blocks/BlockRenderer.tsx`).
 
-1. Rascar el contenido real del WordPress vía `wp-json` / scraping.
-2. Volcar textos, imágenes y catálogo de tratamientos.
-3. Rellenar datos de contacto reales en `src/lib/site.ts`.
-4. Implementar el formulario de cita/leads y conectarlo a Supabase.
-5. Sustituir la paleta/tipografías si el diseño original difiere.
+## Contenido y datos
+
+- `src/lib/site.ts` — datos de contacto, horario, menú y enlaces legales.
+- `src/content/treatments.json` — catálogo de tratamientos (home).
+- `src/content/pages.json` / `posts.json` — páginas y entradas migradas.
+- `public/media/` — imágenes locales del sitio.
+
+## Pendiente / posibles mejoras
+
+1. Implementar el formulario de cita/leads (Forminator en el original) y
+   conectarlo a un backend.
+2. Integrar la política de cookies completa (Complianz) y el banner de consentimiento.
+3. Revisar metadatos SEO por página (Rank Math) si se desea replicarlos al detalle.
