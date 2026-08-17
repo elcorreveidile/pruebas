@@ -144,7 +144,8 @@ export default async function HomePage() {
               <img
                 src="/media/como-lo-hacemos-fabrica-de-sonrisas.webp"
                 alt="Nuestra clínica dental en Granada"
-                className="mt-8 w-full rounded-2xl object-cover"
+                className="mt-8 w-full object-cover"
+                style={{ aspectRatio: "664 / 423" }}
               />
             </div>
 
