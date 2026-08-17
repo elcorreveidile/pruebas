@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Award, HeartHandshake, Sparkles } from "lucide-react";
+import { ArrowRight, Award, Sparkles } from "lucide-react";
 import { site } from "@/lib/site";
 import { treatments } from "@/lib/content";
 import { getHomeBlocks } from "@/lib/pages";
@@ -193,52 +193,50 @@ export default async function HomePage() {
       </section>
 
       {/* SOLIDARIDAD */}
-      <section className="bg-sage-light/40 py-16">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 sm:flex-row">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/media/clinica-dental-en-malaga-nuestro-metodo-bha.webp"
-            alt="Iniciativas solidarias de La Fábrica de Sonrisas"
-            className="w-full rounded-2xl border border-cream-deep sm:w-1/2"
-          />
-          <div className="sm:w-1/2">
-            <p className="text-sm font-semibold uppercase tracking-widest text-coral-dark">
-              Solidarios y sostenibles
-            </p>
-            <h2 className="mt-2 text-3xl font-bold text-ink">La solidaridad de nuestra clínica</h2>
-            <p className="mt-4 text-warm-gray">
-              Descubre nuestras iniciativas solidarias: colaboramos con Cruz Roja, Who Gives A Crap y
-              CajaGranada Fundación para crear sonrisas también fuera del sillón dental.
-            </p>
-            <Link
-              href="/solidarios-y-sostenibles"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-semibold text-white transition-colors hover:bg-coral-dark"
-            >
-              <HeartHandshake className="h-5 w-5" />
-              Quiero saber más
-            </Link>
-          </div>
+      <section className="bg-sage-light py-20">
+        <div className="mx-auto max-w-4xl px-6">
+          <p className="text-sm font-semibold uppercase tracking-wide text-coral-dark">
+            La solidaridad de nuestra clínica dental en Granada
+          </p>
+          <h2 className="font-slab mt-3 text-4xl font-medium text-slate sm:text-5xl">
+            Solidarios y sostenibles
+          </h2>
+          <p className="mt-5 text-[15px] leading-relaxed text-slate">
+            Descubre nuestras iniciativas solidarias.
+          </p>
+          <Link
+            href="/solidarios-y-sostenibles"
+            className="font-slab mt-7 inline-block border-2 border-sage bg-cream-card px-7 py-3 font-bold text-sage transition-colors hover:bg-white"
+          >
+            Quiero saber más
+          </Link>
         </div>
       </section>
 
       {/* MÉTODO BHA */}
-      <section id="bha" className="scroll-mt-24 py-20">
-        <div className="mx-auto max-w-4xl px-4">
-          <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-coral-dark">
-              Nuestra filosofía
-            </p>
-            <h2 className="mt-2 text-3xl font-bold text-ink sm:text-4xl">El Método BHA</h2>
-            <p className="mt-5 leading-relaxed text-warm-gray">
-              Bienestar, Honestidad y Amor: los tres pilares sobre los que trabaja cada miembro de La
-              Fábrica. Una filosofía de vida y de trabajo al servicio de tu sonrisa.
-            </p>
-          </div>
-          {bhaFaqs.length > 0 && (
-            <div className="mt-10">
-              <FAQAccordion items={bhaFaqs} />
+      <section id="bha" className="scroll-mt-24 bg-cream py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/media/clinica-dental-en-malaga-nuestro-metodo-bha.webp"
+              alt="El Método BHA de La Fábrica de Sonrisas"
+              className="w-full rounded-2xl object-cover"
+            />
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-coral-dark">
+                Clínica dental en Granada
+              </p>
+              <h2 className="font-slab mt-3 text-4xl font-medium text-slate sm:text-5xl">
+                El Método BHA
+              </h2>
+              {bhaFaqs.length > 0 && (
+                <div className="mt-6">
+                  <FAQAccordion items={bhaFaqs} />
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </section>
 
