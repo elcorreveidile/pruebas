@@ -1,0 +1,56 @@
+import type { Metadata } from "next";
+import { Montserrat, Nunito_Sans } from "next/font/google";
+import "./globals.css";
+import { site } from "@/lib/site";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import WhatsAppFab from "@/components/WhatsAppFab";
+
+const montserrat = Montserrat({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const nunito = Nunito_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-nunito",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: `Clínica dental en ${site.city} | ${site.name}`,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/icon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    siteName: site.name,
+    title: `Clínica dental en ${site.city} | ${site.name}`,
+    description: site.description,
+  },
+  // Reconstrucción de migración: mantener sin indexar mientras no sea la web productiva.
+  robots: { index: false, follow: false },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="es" className={`${montserrat.variable} ${nunito.variable}`}>
+      <body className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <WhatsAppFab />
+      </body>
+    </html>
+  );
+}
