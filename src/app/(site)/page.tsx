@@ -87,13 +87,13 @@ export default async function HomePage() {
 
         <div className="mt-14 grid gap-8 sm:grid-cols-3">
           {valores.map((v) => (
-            <div key={v.title} className="mx-auto w-full max-w-[260px]">
+            <div key={v.title} className="mx-auto w-full max-w-[300px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={v.img}
                 alt=""
                 className="block w-full object-cover"
-                style={{ aspectRatio: "204 / 305" }}
+                style={{ aspectRatio: "4 / 3" }}
               />
               <h3
                 className="font-slab mt-5 border-b border-[#d6cbbb] pb-4 text-center text-lg font-medium tracking-[0.1em]"
