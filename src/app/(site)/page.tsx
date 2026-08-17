@@ -12,17 +12,17 @@ const valores = [
   {
     img: "/media/verbena_FABRICASONRISAS_dientes_01.png",
     title: "Enfoque humano y emocional",
-    text: "Escuchamos, entendemos y acompañamos. Cuidamos tu bienestar físico y emocional en cada visita.",
+    color: "#d06540",
   },
   {
     img: "/media/verbena_FABRICASONRISAS_dientes_03.png",
     title: "Honestidad y calidad profesional",
-    text: "Odontología integrativa y mínimamente invasiva, con materiales de primer nivel y total transparencia.",
+    color: "#69826f",
   },
   {
     img: "/media/verbena_FABRICASONRISAS_dientes_04.png",
     title: "Experiencia diferenciadora",
-    text: "Un equipo de élite en un ambiente que no te dejará indiferente. Ir al dentista puede ser distinto.",
+    color: "#658291",
   },
 ];
 
@@ -71,27 +71,31 @@ export default async function HomePage() {
       <section className="bg-cream-deep py-20">
         <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-coral-dark">
-            Quiénes somos
+          <p className="text-sm font-semibold uppercase tracking-widest text-slate">
+            Clínica dental en Granada: Quiénes somos
           </p>
           <h2 className="font-slab mt-2 text-4xl font-medium text-slate sm:text-5xl">
             Una clínica dental de autor
           </h2>
           <p className="mt-5 leading-relaxed text-warm-gray">
             La Fábrica de Sonrisas es una clínica dental en Granada de autor creada por la Dra.
-            Hunayda BHA, que apareció en el panorama odontológico con una misión muy concreta: hacer
+            Hunayda BHA que apareció en el panorama odontológico con una misión muy concreta: hacer
             felices a nuestros pacientes a través de una odontología enfocada al bienestar, honesta y
-            de calidad, en un ambiente que no te dejará indiferente.
+            de calidad en un ambiente que no te dejará indiferente.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-3">
           {valores.map((v) => (
-            <div key={v.title} className="text-center">
+            <div key={v.title}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={v.img} alt="" className="mx-auto h-20 w-20 object-contain" />
-              <h3 className="mt-4 text-lg font-bold text-coral-dark">{v.title}</h3>
-              <p className="mt-2 text-sm text-warm-gray">{v.text}</p>
+              <img src={v.img} alt="" className="w-full" />
+              <h3
+                className="font-slab mt-5 border-b border-[#d6cbbb] pb-5 text-center text-lg tracking-[0.12em]"
+                style={{ color: v.color }}
+              >
+                {v.title}
+              </h3>
             </div>
           ))}
         </div>
