@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Award, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { site } from "@/lib/site";
 import { treatments } from "@/lib/content";
 import { getHomeBlocks } from "@/lib/pages";
@@ -241,50 +241,60 @@ export default async function HomePage() {
       </section>
 
       {/* PREMIOS */}
-      <section className="bg-cream-deep/40 py-16">
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <Award className="mx-auto h-12 w-12 text-coral" />
-          <h2 className="mt-4 text-3xl font-bold text-ink">Premios de nuestra clínica dental</h2>
-          <p className="mt-4 text-warm-gray">
-            Hemos recibido múltiples premios que avalan nuestro compromiso con la calidad y el cuidado
-            de nuestros pacientes.
+      <section className="bg-[#dbe4e7] py-20">
+        <div className="mx-auto max-w-4xl px-6">
+          <p className="text-sm font-semibold uppercase tracking-wide text-coral-dark">
+            Premios de nuestra clínica dental
+          </p>
+          <h2 className="font-slab mt-3 text-4xl font-medium text-slate sm:text-5xl">
+            Reconocidos por la excelencia
+          </h2>
+          <p className="mt-5 text-[15px] leading-relaxed text-slate">
+            Hemos recibido múltiples premios que avalan nuestro compromiso con la calidad y el
+            cuidado de nuestros pacientes. Descubre todos nuestros reconocimientos.
           </p>
           <Link
             href="/medios"
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-coral px-6 py-3 font-semibold text-coral-dark transition-colors hover:bg-white"
+            className="font-slab mt-7 inline-block border-2 border-slate bg-white/50 px-7 py-3 font-bold text-slate transition-colors hover:bg-white"
           >
-            Descubre todos nuestros reconocimientos
-            <ArrowRight className="h-4 w-4" />
+            Más información
           </Link>
         </div>
       </section>
 
-      {/* EQUIPO */}
-      <section className="mx-auto max-w-5xl px-4 py-20 text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-coral-dark">
-          El equipo
-        </p>
-        <h2 className="mt-2 text-3xl font-bold text-ink sm:text-4xl">
-          Las personas de La Fábrica
-        </h2>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/media/imagen-nueva-eqipo-la-fabrica-de-sonrisas.png"
-          alt="Equipo de La Fábrica de Sonrisas"
-          className="mx-auto mt-8 w-full max-w-3xl rounded-2xl border border-cream-deep"
-        />
-        <p className="mx-auto mt-8 max-w-2xl text-warm-gray">
-          Nos apasiona lo que hacemos y se nota: cada tratamiento es personalizado, adaptado a ti y a
-          tu forma de vivir (y de sonreír). Ven a conocernos y verás que ir al dentista puede ser una
-          experiencia tan cómoda como divertida.
-        </p>
-        <Link
-          href="/el-equipo"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-semibold text-white transition-colors hover:bg-coral-dark"
-        >
-          ¡Conócenos!
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+      {/* EQUIPO / FABRIEQUIPO */}
+      <section className="bg-coral py-20">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <p className="text-sm font-semibold uppercase tracking-wide text-white/85">
+            El Equipo de nuestra clínica dental en Granada
+          </p>
+          <h2 className="font-slab mt-3 text-4xl font-medium text-white sm:text-5xl">
+            FabriEquipo
+          </h2>
+          <blockquote className="font-slab mx-auto mt-6 max-w-2xl text-lg italic text-white/95">
+            «Puedes diseñar y construir el lugar más maravilloso del mundo, pero se necesita gente
+            para hacer el sueño realidad»
+            <footer className="mt-2 text-sm not-italic text-white/80">– Walt Disney –</footer>
+          </blockquote>
+          <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-white/90">
+            En La Fábrica de Sonrisas nos apasiona lo que hacemos y se nota: cada tratamiento es
+            personalizado, adaptado a ti y a tu forma de vivir (y de sonreír). Ven a conocernos y
+            verás que ir al dentista puede ser una experiencia tan cómoda como divertida. Porque
+            aquí, tu sonrisa es cosa seria… pero el ambiente, ¡nunca lo es!
+          </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/media/imagen-nueva-eqipo-la-fabrica-de-sonrisas.png"
+            alt="FabriEquipo de La Fábrica de Sonrisas"
+            className="mx-auto mt-8 w-full max-w-3xl rounded-2xl"
+          />
+          <Link
+            href="/el-equipo"
+            className="font-slab mt-8 inline-block border-2 border-white bg-white/10 px-7 py-3 font-bold text-white transition-colors hover:bg-white hover:text-coral"
+          >
+            ¡Conócenos!
+          </Link>
+        </div>
       </section>
 
       <ContactSection />
