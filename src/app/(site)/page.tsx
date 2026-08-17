@@ -163,23 +163,33 @@ export default async function HomePage() {
       </section>
 
       {/* CÓMO LO HACEMOS (CALMA) */}
-      <section className="mx-auto max-w-4xl px-4 py-20 text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-coral-dark">
-          Cómo lo hacemos
-        </p>
-        <h2 className="mt-2 text-3xl font-bold text-ink sm:text-4xl">Con calma</h2>
-        <p className="mt-5 leading-relaxed text-warm-gray">
-          Trabajar con calma nos beneficia a todos. Hacer las cosas con tranquilidad hace que salgan
-          mejor, también en la odontología. Dedicamos a cada paciente el tiempo que necesita para una
-          buena comunicación, un buen diagnóstico y una correcta planificación.
-        </p>
-        <p className="mt-4 leading-relaxed text-warm-gray">
-          En definitiva, menos pacientes y más tiempo con cada paciente, para poder ponerle a nuestro
-          trabajo el alma que necesita.
-        </p>
-        <p className="mt-6 text-lg font-semibold text-coral-dark">
-          Nuestro consejo: llena tu vida de momentos con CALMA.
-        </p>
+      <section className="bg-cream-deep py-20">
+        <div className="mx-auto max-w-4xl px-6">
+          <p className="text-sm font-semibold uppercase tracking-wide text-coral-dark">
+            Cómo lo hacemos en nuestra clínica dental en Granada
+          </p>
+          <h2 className="font-slab mt-3 text-4xl font-medium text-slate sm:text-5xl">Con calma</h2>
+          <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-warm-gray">
+            <p>
+              Ya sabéis qué hacemos, ahora os vamos a explicar cómo lo hacemos… Trabajar con calma
+              nos beneficia a todos. En estos tiempos tan frenéticos que vivimos, hacer las cosas con
+              tranquilidad hace que salgan mejor, también en la odontología.
+            </p>
+            <p>
+              Creemos que es de suma importancia que os podamos dedicar el tiempo que necesitáis para
+              que haya una buena comunicación, un buen diagnóstico y una correcta planificación que
+              simplifique el número de visitas y aumente nuestra capacidad de concentración,
+              garantizando así el éxito del tratamiento.
+            </p>
+            <p>
+              En definitiva, menos pacientes y más tiempo con cada paciente. Más tiempo con cada uno
+              de vosotros, para poder ponerle a nuestro trabajo el alma que necesita.
+            </p>
+            <p className="text-lg font-semibold text-coral-dark">
+              Nuestro consejo: llena tu vida de momentos con CALMA.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* SOLIDARIDAD */}
