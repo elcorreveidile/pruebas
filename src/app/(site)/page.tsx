@@ -68,9 +68,9 @@ export default async function HomePage() {
       </section>
 
       {/* QUIÉNES SOMOS + VALORES */}
-      <section className="bg-cream-deep py-36">
+      <section className="bg-cream-deep pt-[154px] pb-[50px]">
         <div className="mx-auto max-w-6xl px-4">
-        <div className="mx-auto max-w-xl text-center">
+        <div className="mx-auto max-w-[850px] text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-slate">
             Clínica dental en Granada: Quiénes somos
           </p>
@@ -85,13 +85,13 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-3">
+        <div className="mt-14 grid gap-8 sm:grid-cols-3">
           {valores.map((v) => (
-            <div key={v.title} className="mx-auto w-full max-w-[210px]">
+            <div key={v.title} className="mx-auto w-full max-w-[300px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={v.img} alt="" className="w-full" />
               <h3
-                className="font-slab mt-6 border-b border-[#d6cbbb] pb-5 text-center text-lg font-medium leading-relaxed tracking-[0.14em]"
+                className="font-slab mt-5 border-b border-[#d6cbbb] pb-4 text-center text-lg font-medium tracking-[0.1em]"
                 style={{ color: v.color }}
               >
                 {v.title}
