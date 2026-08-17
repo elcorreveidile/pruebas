@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Nunito_Sans } from "next/font/google";
+import { Montserrat, Nunito_Sans, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -12,6 +12,14 @@ const montserrat = Montserrat({
 const nunito = Nunito_Sans({
   subsets: ["latin", "latin-ext"],
   variable: "--font-nunito",
+  display: "swap",
+});
+
+// Tipografía de titulares del sitio original (Divi): Roboto Slab.
+const robotoSlab = Roboto_Slab({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "700"],
+  variable: "--font-roboto-slab",
   display: "swap",
 });
 
@@ -46,7 +54,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${montserrat.variable} ${nunito.variable}`}>
+    <html lang="es" className={`${montserrat.variable} ${nunito.variable} ${robotoSlab.variable}`}>
       <body className="flex min-h-screen flex-col">{children}</body>
     </html>
   );

@@ -1,24 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { nav, site } from "@/lib/site";
 
 export default function Header() {
   const [openMobile, setOpenMobile] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-cream-deep bg-cream/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+    <header className="sticky top-0 z-50 border-b border-cream-deep/70 bg-white/95 backdrop-blur">
+      <div
+        className={
+          "mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-8 transition-all duration-300 " +
+          (scrolled ? "py-3" : "py-8")
+        }
+      >
         <Link href="/" className="flex items-center gap-2 shrink-0" aria-label={site.name}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/media/logo.png"
             alt={site.name}
-            className="h-11 w-auto"
+            className={"w-auto transition-all duration-300 " + (scrolled ? "h-11" : "h-[72px]")}
             width={160}
-            height={44}
+            height={72}
           />
         </Link>
 
@@ -29,7 +42,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="ml-2 rounded-full bg-coral px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark"
+                className="ml-2 rounded-full bg-coral px-5 py-2 text-[13px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-coral-dark"
               >
                 {item.label}
               </Link>
@@ -37,7 +50,7 @@ export default function Header() {
               <div key={item.label} className="group relative">
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold text-slate transition-colors hover:text-coral-dark"
+                  className="flex items-center gap-1 rounded-full px-3 py-2 text-[13px] font-bold uppercase tracking-wide text-coral transition-colors hover:text-coral-dark"
                 >
                   {item.label}
                   <ChevronDown className="h-3.5 w-3.5" />
@@ -58,7 +71,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-3 py-2 text-sm font-semibold text-slate transition-colors hover:text-coral-dark"
+                className="rounded-full px-3 py-2 text-[13px] font-bold uppercase tracking-wide text-coral transition-colors hover:text-coral-dark"
               >
                 {item.label}
               </Link>

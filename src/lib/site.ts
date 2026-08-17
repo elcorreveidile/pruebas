@@ -76,7 +76,7 @@ export const nav: NavItem[] = [
   },
   { label: "El método BHA", href: "/#bha" },
   { label: "Blog", href: "/blog" },
-  { label: "Medios", href: "/medios" },
+  { label: "La fábrica en los medios", href: "/medios" },
   { label: "Contacto", href: "/contacto" },
   { label: "Cita online", href: "/primera-visita", cta: true },
 ];

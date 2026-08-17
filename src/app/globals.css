@@ -6,7 +6,7 @@
  * fondo y verde salvia / teal como secundarios.
  */
 :root {
-  --background: #fffaef;
+  --background: #ffffff;
   --foreground: #1c160d;
   --coral: #ff7f67;
   --coral-dark: #d06540;
@@ -41,6 +41,12 @@
   --color-whatsapp: var(--whatsapp);
   --font-sans: var(--font-nunito), system-ui, -apple-system, sans-serif;
   --font-display: var(--font-montserrat), var(--font-nunito), system-ui, sans-serif;
+  --font-slab: var(--font-roboto-slab), Georgia, "Times New Roman", serif;
+}
+
+/* Tipografía de titulares del sitio original (Roboto Slab). */
+.font-slab {
+  font-family: var(--font-slab);
 }
 
 * {

@@ -34,43 +34,47 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden border-b border-cream-deep bg-cream-deep/40">
-        <div className="mx-auto max-w-6xl px-4 py-20 text-center sm:py-28">
-          <p className="animate-fade-in-up text-sm font-semibold uppercase tracking-widest text-coral-dark">
-            Clínica dental · {site.city}
-          </p>
-          <h1 className="animate-fade-in-up mt-4 text-4xl font-bold text-ink sm:text-6xl">
-            {site.claim}
-          </h1>
-          <p className="animate-fade-in-up mx-auto mt-6 max-w-2xl text-lg text-warm-gray">
-            La Fábrica de Sonrisas es una clínica dental de autor en {site.city}. Odontología
-            enfocada al bienestar, honesta y de calidad, en un ambiente que no te dejará indiferente.
-          </p>
-          <div className="animate-fade-in-up mt-10 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/primera-visita"
-              className="rounded-full bg-coral px-8 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark"
+      {/* HERO (réplica del sitio original) */}
+      <section
+        className="relative flex min-h-[620px] items-center overflow-hidden bg-white md:min-h-[780px] lg:min-h-[88vh]"
+        style={{
+          backgroundImage:
+            "linear-gradient(86deg, #ffffff 0%, rgba(41,196,169,0) 71%), url('/media/hero-home.webp')",
+          backgroundSize: "cover, 118%",
+          backgroundPosition: "center, center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="mx-auto w-full max-w-7xl px-8 py-20">
+          <div className="max-w-xl">
+            <p className="animate-fade-in-up text-sm font-semibold uppercase tracking-wide text-slate">
+              Clínica dental en {site.city}
+            </p>
+            <h1
+              className="font-slab animate-fade-in-up mt-4 text-5xl font-medium leading-[1.08] text-slate sm:text-6xl lg:text-[80px]"
             >
-              Pide tu cita
-            </Link>
-            <Link
-              href="#servicios"
-              className="rounded-full border border-coral px-8 py-3 font-semibold text-coral-dark transition-colors hover:bg-cream-deep"
-            >
-              Ver tratamientos
-            </Link>
+              {site.claim}
+            </h1>
+            <div className="animate-fade-in-up mt-8">
+              <Link
+                href="/contacto"
+                className="font-slab inline-block border-2 border-slate bg-white/60 px-8 py-3 font-bold text-slate transition-colors hover:bg-white"
+              >
+                Contáctanos
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* QUIÉNES SOMOS + VALORES */}
-      <section className="mx-auto max-w-6xl px-4 py-20">
+      <section className="bg-cream-deep py-20">
+        <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-coral-dark">
             Quiénes somos
           </p>
-          <h2 className="mt-2 text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="font-slab mt-2 text-4xl font-medium text-slate sm:text-5xl">
             Una clínica dental de autor
           </h2>
           <p className="mt-5 leading-relaxed text-warm-gray">
@@ -91,48 +95,69 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* SERVICIOS */}
-      <section id="servicios" className="scroll-mt-24 bg-cream-deep/40 py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-coral-dark">
-              ¿Nos dejas ser tus dentistas?
-            </p>
-            <h2 className="mt-2 text-3xl font-bold text-ink sm:text-4xl">
-              Los servicios de nuestra clínica dental
-            </h2>
-            <p className="mt-5 leading-relaxed text-warm-gray">
-              Entendemos la odontología como una disciplina que mejora la salud general del paciente,
-              no solo la bucodental. Contamos con especialistas en todas las áreas: ortodoncia,
-              implantes, estética, periodoncia y mucho más.
-            </p>
-          </div>
+      <section id="servicios" className="scroll-mt-24 bg-coral py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+            {/* Columna izquierda: texto + foto de la doctora */}
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-white/85">
+                Los servicios de nuestra clínica dental en Granada
+              </p>
+              <h2 className="font-slab mt-3 text-4xl font-medium leading-[1.1] text-white sm:text-5xl">
+                ¿Nos dejas ser tus dentistas?
+              </h2>
+              <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-white/90">
+                <p>
+                  En nuestra clínica dental en Granada entendemos la odontología como una disciplina
+                  que se encarga de mejorar la salud general del paciente, no solo la bucodental.
+                  Contamos con especialistas en todas las áreas (ortodoncia, implantes, estética,
+                  periodoncia, etc.) porque, para llevar a cabo nuestra misión de haceros felices y
+                  más saludables, nuestra metodología de trabajo se basa en una odontología
+                  integrativa y mínimamente invasiva.
+                </p>
+                <p>
+                  Para muchas personas, visitar al dentista supone una situación de ansiedad y
+                  estrés, por eso nos esforzamos al máximo por escucharte, entenderte y ofrecerte
+                  realmente lo que necesitas.
+                </p>
+                <p>
+                  Si buscas una clínica dental en Granada diferente, donde se haga odontología de
+                  alto nivel, con un equipo de élite y en un ambiente que no te dejará indiferente,
+                  este es tu sitio. Mándanos un WhatsApp, llámanos o pásate por aquí, estaremos
+                  encantados de ser tus dentistas.
+                </p>
+              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/media/como-lo-hacemos-fabrica-de-sonrisas.webp"
+                alt="Nuestra clínica dental en Granada"
+                className="mt-8 w-full rounded-2xl object-cover"
+              />
+            </div>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {treatments.map((t) => (
-              <Link
-                key={t.slug}
-                href={`/${t.slug}`}
-                className="group flex flex-col rounded-2xl border border-cream-deep bg-white p-6 transition-shadow hover:shadow-md"
-              >
-                <div className="flex items-center gap-3">
+            {/* Columna derecha: tarjetas apiladas */}
+            <div className="space-y-4">
+              {treatments.map((t) => (
+                <Link
+                  key={t.slug}
+                  href={`/${t.slug}`}
+                  className="group block rounded-2xl bg-white/90 p-6 transition-all hover:bg-white hover:shadow-lg"
+                >
                   {t.icono ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={t.icono} alt="" className="h-12 w-12 object-contain" />
                   ) : (
                     <Sparkles className="h-10 w-10 text-coral" />
                   )}
-                  <h3 className="text-lg font-bold text-ink">{t.nombre}</h3>
-                </div>
-                <p className="mt-3 flex-1 text-sm text-warm-gray">{t.descripcion}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-coral-dark">
-                  Saber más
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            ))}
+                  <h3 className="mt-3 text-lg font-bold text-slate">{t.nombre}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-slate/80">{t.descripcion}</p>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
