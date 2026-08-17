@@ -1,0 +1,80 @@
+[
+ {
+  "nombre": "Ortodoncia",
+  "slug": "ortodoncia-en-granada",
+  "descripcion": "Corregimos la posición de tus dientes para mejorar tanto la estética como la funcionalidad de tu boca. Con brackets tradicionales.",
+  "icono": "/media/icono-ortodoncia.png"
+ },
+ {
+  "nombre": "Ortodoncia invisible",
+  "slug": "ortodoncia-invisible-en-granada",
+  "descripcion": "Una opción discreta y cómoda. Alineadores transparentes que corrigen tu sonrisa sin que apenas se note.",
+  "icono": "/media/icono-ortodoncia-invisible.png"
+ },
+ {
+  "nombre": "Odontología general",
+  "slug": "odontologia-general",
+  "descripcion": "Revisiones, higiene bucodental y tratamientos restauradores para mantener tu boca sana día a día. Es la base de todo buen cuidado dental.",
+  "icono": "/media/icono-odontologia-general.png"
+ },
+ {
+  "nombre": "Exodoncia / extracción",
+  "slug": "extraccion-dental-en-granada",
+  "descripcion": "Cuando no queda otra opción, realizamos extracciones dentales seguras y con el menor impacto posible. Siempre con todas las garantías.",
+  "icono": "/media/icono-extraccion.png"
+ },
+ {
+  "nombre": "Implantología",
+  "slug": "implantes-dentales-en-granada",
+  "descripcion": "Recupera tus dientes perdidos con implantes dentales seguros, estables y con un aspecto natural. Para volver a sonreír sin preocuparte.",
+  "icono": "/media/icono-implante.png"
+ },
+ {
+  "nombre": "Autotrasplante dental",
+  "slug": "autotrasplante-dental-en-granada",
+  "descripcion": "Utilizamos una pieza dental tuya para sustituir otra que no puede conservarse. Una solución innovadora y eficaz.",
+  "icono": "/media/icono-autotrasolante-sonrisa-amiga.png"
+ },
+ {
+  "nombre": "Periodoncia",
+  "slug": "periodoncia-en-granada",
+  "descripcion": "Tratamos las enfermedades de las encías antes de que dañen tu sonrisa. Porque unas encías sanas son clave para mantener tus dientes.",
+  "icono": "/media/icono-periodoncia.png"
+ },
+ {
+  "nombre": "Estética dental",
+  "slug": "estetica-dental-en-granada",
+  "descripcion": "Mejoramos el aspecto de tu sonrisa con tratamientos como carillas o blanqueamientos. Natural, a tu medida.",
+  "icono": "/media/icono-estetica-dental.png"
+ },
+ {
+  "nombre": "Diseño digital de la sonrisa (DSD)",
+  "slug": "diseno-digital-de-sonrisa-en-granada",
+  "descripcion": "Planificamos tu sonrisa ideal de forma digital antes del tratamiento. Así puedes ver el resultado antes de tomar la decisión.",
+  "icono": "/media/icono-dsd.png"
+ },
+ {
+  "nombre": "Disyunción palatina",
+  "slug": "expansion-del-maxilar-en-granada",
+  "descripcion": "Tratamiento avanzado que corrige la estructura del maxilar para mejorar la respiración, la funcionalidad y la estabilidad de la sonrisa con resultados duraderos.",
+  "icono": "/media/maxilar.png"
+ },
+ {
+  "nombre": "Microimplantes dentales",
+  "slug": "microimplantes-dentales-en-granada",
+  "descripcion": "Soluciones mínimamente invasivas para mejorar la estabilidad de prótesis o sustituir piezas dentales en casos específicos. Comodidad y funcionalidad desde el primer momento.",
+  "icono": "/media/implante-dental.png"
+ },
+ {
+  "nombre": "Cirugía periodontal",
+  "slug": "cirugia-periodontal-en-granada",
+  "descripcion": "Tratamientos avanzados para eliminar la infección en las encías y frenar su avance. Protegemos la base de tu sonrisa para mantener tus dientes a largo plazo.",
+  "icono": "/media/cirugia-dental.png"
+ },
+ {
+  "nombre": "Carillas dentales",
+  "slug": "carillas-dentales-en-granada",
+  "descripcion": "Finas láminas que colocamos sobre tus dientes para corregir color, forma o pequeñas imperfecciones. El cambio que tu sonrisa estaba esperando.",
+  "icono": "/media/carillas-dentales-1.png"
+ }
+]

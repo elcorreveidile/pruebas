@@ -1,0 +1,268 @@
+// Prisma schema — La Fábrica de Sonrisas (panel de administración)
+// Base de datos: PostgreSQL (Neon en producción).
+// Genera el cliente con `npx prisma generate` y aplica cambios con
+// `npx prisma migrate dev` (o `prisma db push` en desarrollo rápido).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Autenticación (magic link)
+// ---------------------------------------------------------------------------
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+/// Usuarios que pueden acceder al panel. Sin contraseña: se entra por enlace
+/// mágico enviado al email. Solo los emails dados de alta aquí pueden entrar.
+model User {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  name        String?
+  role        Role      @default(EDITOR)
+  isActive    Boolean   @default(true)
+  lastLoginAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  leadNotes   LeadNote[]
+  clientNotes ClientNote[]
+  emails      EmailMessage[]
+}
+
+/// Token de un solo uso para el enlace mágico. Se guarda solo el hash del
+/// token; el original viaja en el email. Se elimina al usarse o al caducar.
+model LoginToken {
+  id        String   @id @default(cuid())
+  email     String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
+
+// ---------------------------------------------------------------------------
+// Citas / Leads (equivalente a Forminator)
+// ---------------------------------------------------------------------------
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  CLOSED
+}
+
+model Lead {
+  id        String     @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  treatment String? // tratamiento de interés (slug o texto libre)
+  message   String?
+  source    String     @default("web") // origen del lead
+  status    LeadStatus @default(NEW)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  notes LeadNote[]
+
+  // Si la cita se ha convertido en cliente, queda enlazada.
+  client   Client? @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  clientId String?
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([clientId])
+}
+
+/// Notas internas del equipo sobre un lead (seguimiento).
+model LeadNote {
+  id        String   @id @default(cuid())
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  leadId    String
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  authorId  String?
+  body      String
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+}
+
+// ---------------------------------------------------------------------------
+// Clientes / CRM ligero (contactos). Los datos clínicos viven en el software
+// dental (Optimydent); aquí solo contacto, consentimiento y seguimiento.
+// ---------------------------------------------------------------------------
+
+model Client {
+  id               String       @id @default(cuid())
+  name             String
+  phone            String?
+  email            String?
+  interest         String? // tratamiento de interés
+  source           String       @default("manual") // manual | lead | import
+  consentMarketing Boolean      @default(false)
+  consentAt        DateTime?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  notes ClientNote[]
+  leads Lead[] // citas asociadas a este cliente
+
+  @@index([createdAt])
+}
+
+model ClientNote {
+  id        String   @id @default(cuid())
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId  String
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  authorId  String?
+  body      String
+  createdAt DateTime @default(now())
+
+  @@index([clientId])
+}
+
+// ---------------------------------------------------------------------------
+// Correos: composición, envío (Brevo) e historial
+// ---------------------------------------------------------------------------
+
+enum EmailStatus {
+  DRAFT
+  SENT
+}
+
+model EmailMessage {
+  id        String      @id @default(cuid())
+  subject   String
+  bodyHtml  String // contenido interno (antes de envolver en la plantilla)
+  status    EmailStatus @default(DRAFT)
+  sentAt    DateTime?
+  author    User?       @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  authorId  String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  recipients EmailRecipient[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model EmailRecipient {
+  id        String       @id @default(cuid())
+  message   EmailMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  messageId String
+  email     String
+  name      String?
+  status    String       @default("pending") // pending | sent | failed
+  error     String?
+
+  @@index([messageId])
+}
+
+// ---------------------------------------------------------------------------
+// Contenido: Blog, Páginas y Tratamientos
+// ---------------------------------------------------------------------------
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+}
+
+/// Entradas del blog.
+model Post {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  excerpt        String?
+  blocks         Json          @default("[]") // bloques de contenido (ver src/types Block[])
+  coverImage     String?
+  status         ContentStatus @default(DRAFT)
+  publishedAt    DateTime?
+  // SEO (equivalente a Rank Math)
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([status])
+}
+
+enum PageKind {
+  PAGE
+  TREATMENT
+  HOME
+  LEGAL
+}
+
+/// Páginas de contenido migradas de WordPress (institucionales, tratamientos…).
+model Page {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  excerpt        String?
+  kind           PageKind      @default(PAGE)
+  blocks         Json          @default("[]")
+  status         ContentStatus @default(PUBLISHED)
+  order          Int           @default(0)
+  // SEO
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+/// Tarjetas de tratamiento de la portada (catálogo de servicios).
+model Treatment {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  nombre      String
+  descripcion String
+  icono       String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Medios (biblioteca de imágenes) y ajustes del sitio
+// ---------------------------------------------------------------------------
+
+model Media {
+  id          String   @id @default(cuid())
+  url         String // URL pública (Vercel Blob o /media local)
+  pathname    String   @unique // ruta/clave del archivo
+  filename    String
+  contentType String?
+  size        Int?
+  width       Int?
+  height      Int?
+  alt         String?
+  createdAt   DateTime @default(now())
+}
+
+/// Ajustes del sitio como pares clave/valor (contacto, horario, menú, legales…).
+model Setting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+/// Redirecciones (equivalente al plugin Redirection).
+model Redirect {
+  id          String   @id @default(cuid())
+  source      String   @unique
+  destination String
+  permanent   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
