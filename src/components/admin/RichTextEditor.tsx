@@ -25,7 +25,15 @@ import {
  * el usuario da formato con la barra de herramientas. El HTML resultante se
  * sincroniza en un input oculto llamado `body` para enviarlo con el formulario.
  */
-export default function RichTextEditor({ initialHTML }: { initialHTML: string }) {
+export default function RichTextEditor({
+  initialHTML,
+  onChange,
+  minHeight = 360,
+}: {
+  initialHTML: string;
+  onChange?: (html: string) => void;
+  minHeight?: number;
+}) {
   const [html, setHtml] = useState(initialHTML);
 
   const editor = useEditor({
@@ -39,10 +47,15 @@ export default function RichTextEditor({ initialHTML }: { initialHTML: string })
     editorProps: {
       attributes: {
         class:
-          "prose-editor min-h-[360px] rounded-b-xl border border-t-0 border-cream-deep bg-white px-4 py-3 focus:outline-none",
+          "prose-editor rounded-b-xl border border-t-0 border-cream-deep bg-white px-4 py-3 focus:outline-none",
+        style: `min-height:${minHeight}px`,
       },
     },
-    onUpdate: ({ editor }) => setHtml(editor.getHTML()),
+    onUpdate: ({ editor }) => {
+      const next = editor.getHTML();
+      setHtml(next);
+      onChange?.(next);
+    },
   });
 
   return (

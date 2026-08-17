@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/db";
 import { sendEmail } from "@/lib/email";
 import { AppointmentSchema } from "@/lib/leads";
+import { renderBrandedEmail } from "@/lib/emailTemplate";
 
 export interface AppointmentState {
   ok?: boolean;
@@ -93,12 +94,14 @@ Gestiónala en el panel: ${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/admin/leads/$
         to: [{ email, name: data.name }],
         subject: "Hemos recibido tu solicitud · La Fábrica de Sonrisas",
         text: `Hola ${data.name},\n\nHemos recibido tu solicitud de cita y te contactaremos muy pronto. Si necesitas algo urgente, llámanos al 958 22 74 74.\n\nUn abrazo,\nLa Fábrica de Sonrisas`,
-        html: `<div style="font-family:Arial;font-size:15px;color:#2b2b2b">
+        html: renderBrandedEmail({
+          preheader: "Hemos recibido tu solicitud de cita.",
+          bodyHtml: `<h2>¡Gracias por escribirnos!</h2>
 <p>Hola ${esc(data.name)},</p>
-<p>Hemos recibido tu solicitud de cita y te contactaremos muy pronto.</p>
-<p>Si necesitas algo urgente, llámanos al <b>958 22 74 74</b>.</p>
-<p>Un abrazo,<br/>La Fábrica de Sonrisas 🦷</p>
-</div>`,
+<p>Hemos recibido tu solicitud de cita y te contactaremos muy pronto para confirmarla.</p>
+<p>Si necesitas algo urgente, llámanos al <strong>958 22 74 74</strong>.</p>
+<p>Un abrazo,<br>El equipo de La Fábrica de Sonrisas</p>`,
+        }),
       });
     } catch (err) {
       console.error("[appointment] fallo autorespuesta", err);

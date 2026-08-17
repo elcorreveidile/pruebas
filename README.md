@@ -82,6 +82,11 @@ solo lo que se usa de verdad, más rápido y sin plugins.
 - **Clientes / CRM ligero**: base de contactos en `/admin/clients` con búsqueda,
   ficha editable, notas, consentimiento RGPD (con fecha), **convertir una cita
   en cliente** (quedan enlazadas) y **exportación CSV + JSON** (portabilidad).
+- **Correos** (`/admin/emails`): redactar con el editor visual y enviar por Brevo
+  a clientes (del CRM) y a otros emails (proveedores), con **plantilla corporativa**
+  (logo, colores y pie con datos/legal), **vista previa en vivo** e **historial**
+  con el estado de envío por destinatario. La autorespuesta de citas usa la misma
+  plantilla, para que todo correo de la clínica se vea corporativo.
 - **Blog** (equivalente a Divi + editor): CRUD en `/admin/blog` con **editor
   visual WYSIWYG** (negrita, títulos, listas, enlaces, imágenes — sin markdown).
   El blog público lee de la BD con ISR.
