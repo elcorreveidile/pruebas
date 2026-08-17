@@ -68,7 +68,7 @@ export default async function HomePage() {
       </section>
 
       {/* QUIÉNES SOMOS + VALORES */}
-      <section className="bg-cream-deep pt-[154px] pb-[50px]">
+      <section className="bg-cream-deep py-40">
         <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto max-w-[850px] text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-slate">
@@ -92,7 +92,7 @@ export default async function HomePage() {
               <img
                 src={v.img}
                 alt=""
-                className="block w-full object-fill"
+                className="block w-full object-cover"
                 style={{ aspectRatio: "204 / 305" }}
               />
               <h3
