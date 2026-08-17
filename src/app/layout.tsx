@@ -33,6 +33,11 @@ export const metadata: Metadata = {
     title: `Clínica dental en ${site.city} | ${site.name}`,
     description: site.description,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `Clínica dental en ${site.city} | ${site.name}`,
+    description: site.description,
+  },
   // Reconstrucción de migración: mantener sin indexar mientras no sea la web productiva.
   robots: { index: false, follow: false },
 };
