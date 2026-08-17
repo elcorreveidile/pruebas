@@ -74,6 +74,19 @@ export default async function Footer() {
             ))}
           </nav>
         </div>
+        <div className="border-t border-cream-deep">
+          <p className="mx-auto max-w-7xl px-4 py-4 text-center text-xs text-warm-gray">
+            Desarrollado por{" "}
+            <a
+              href="https://www.por2duros.com"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-coral-dark hover:underline"
+            >
+              Por 2 duros
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
