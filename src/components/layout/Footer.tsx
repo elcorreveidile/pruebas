@@ -8,7 +8,7 @@ export default async function Footer() {
   const contact = await getContactSettings();
 
   return (
-    <footer className="mt-16 border-t border-cream-deep bg-cream-deep/50">
+    <footer className="mt-16 border-t border-cream-deep bg-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}

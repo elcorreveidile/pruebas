@@ -1,5 +1,7 @@
 import { Phone, MessageCircle, Mail, MapPin, Clock } from "lucide-react";
 import { getContactSettings, getSchedule } from "@/lib/settings";
+import { treatments } from "@/lib/content";
+import AppointmentForm from "@/components/AppointmentForm";
 
 export default async function ContactSection() {
   const [contact, horario] = await Promise.all([
@@ -15,17 +17,10 @@ export default async function ContactSection() {
   ];
 
   return (
-    <section id="contacto" className="scroll-mt-24 bg-cream-deep/50 py-16">
-      <div className="mx-auto max-w-7xl px-4">
-        <p className="text-center text-sm font-semibold uppercase tracking-widest text-coral-dark">
-          Contáctanos
-        </p>
-        <h2 className="mt-2 text-center text-3xl font-bold text-ink sm:text-4xl">
-          Estamos aquí para ayudarte
-        </h2>
-
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
-          {/* Tarjetas de contacto */}
+    <section id="contacto" className="scroll-mt-24 bg-[#fcc9b2] py-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Datos de contacto */}
           <div className="grid gap-4 sm:grid-cols-2">
             {cards.map((c) => {
               const Icon = c.icon;
@@ -35,7 +30,7 @@ export default async function ContactSection() {
                   href={c.href}
                   target={c.href.startsWith("http") ? "_blank" : undefined}
                   rel={c.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="flex flex-col gap-2 rounded-2xl border border-cream-deep bg-white p-5 transition-shadow hover:shadow-md"
+                  className="flex flex-col gap-2 rounded-2xl bg-white/90 p-5 transition-shadow hover:shadow-md"
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-coral/15 text-coral-dark">
                     <Icon className="h-5 w-5" />
@@ -47,7 +42,7 @@ export default async function ContactSection() {
             })}
 
             {/* Horario */}
-            <div className="rounded-2xl border border-cream-deep bg-white p-5 sm:col-span-2">
+            <div className="rounded-2xl bg-white/90 p-5 sm:col-span-2">
               <div className="flex items-center gap-2">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sage-light text-slate">
                   <Clock className="h-4 w-4" />
@@ -65,16 +60,8 @@ export default async function ContactSection() {
             </div>
           </div>
 
-          {/* Mapa */}
-          <div className="overflow-hidden rounded-2xl border border-cream-deep bg-white shadow-sm">
-            <iframe
-              title="Ubicación de La Fábrica de Sonrisas en Granada"
-              src={contact.mapsEmbed}
-              className="h-full min-h-80 w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+          {/* Formulario de contacto */}
+          <AppointmentForm treatments={treatments.map((t) => t.nombre)} />
         </div>
       </div>
     </section>
