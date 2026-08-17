@@ -1,34 +1,19 @@
 import { Phone, MessageCircle, Mail, MapPin, Clock } from "lucide-react";
-import { site } from "@/lib/site";
+import { getContactSettings, getSchedule } from "@/lib/settings";
 
-const cards = [
-  {
-    icon: Phone,
-    label: "Llámanos",
-    value: site.phone,
-    href: site.phoneHref,
-  },
-  {
-    icon: MessageCircle,
-    label: "Whatsapéanos",
-    value: site.whatsapp,
-    href: site.whatsappHref,
-  },
-  {
-    icon: Mail,
-    label: "Escríbenos",
-    value: site.email,
-    href: `mailto:${site.email}`,
-  },
-  {
-    icon: MapPin,
-    label: "Visítanos",
-    value: "Calle Molinos, 34 — Barrio del Realejo, Granada",
-    href: site.mapsUrl,
-  },
-];
+export default async function ContactSection() {
+  const [contact, horario] = await Promise.all([
+    getContactSettings(),
+    getSchedule(),
+  ]);
 
-export default function ContactSection() {
+  const cards = [
+    { icon: Phone, label: "Llámanos", value: contact.phone, href: contact.phoneHref },
+    { icon: MessageCircle, label: "Whatsapéanos", value: contact.whatsapp, href: contact.whatsappHref },
+    { icon: Mail, label: "Escríbenos", value: contact.email, href: `mailto:${contact.email}` },
+    { icon: MapPin, label: "Visítanos", value: contact.addressShort, href: contact.mapsUrl },
+  ];
+
   return (
     <section id="contacto" className="scroll-mt-24 bg-cream-deep/50 py-16">
       <div className="mx-auto max-w-7xl px-4">
@@ -70,7 +55,7 @@ export default function ContactSection() {
                 <span className="text-sm font-bold text-slate">Horario</span>
               </div>
               <dl className="mt-3 grid gap-x-6 gap-y-1 text-sm sm:grid-cols-2">
-                {site.horario.map((h) => (
+                {horario.map((h) => (
                   <div key={h.dia} className="flex justify-between gap-3 border-b border-cream-deep/70 py-1">
                     <dt className="text-warm-gray">{h.dia}</dt>
                     <dd className="text-right font-medium text-slate">{h.horas}</dd>
@@ -84,7 +69,7 @@ export default function ContactSection() {
           <div className="overflow-hidden rounded-2xl border border-cream-deep bg-white shadow-sm">
             <iframe
               title="Ubicación de La Fábrica de Sonrisas en Granada"
-              src={site.mapsEmbed}
+              src={contact.mapsEmbed}
               className="h-full min-h-80 w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

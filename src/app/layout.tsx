@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Montserrat, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import WhatsAppFab from "@/components/WhatsAppFab";
 
 const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
@@ -45,12 +42,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${montserrat.variable} ${nunito.variable}`}>
-      <body className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppFab />
-      </body>
+      <body className="flex min-h-screen flex-col">{children}</body>
     </html>
   );
 }

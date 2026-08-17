@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { ArrowRight, Award, HeartHandshake, Sparkles } from "lucide-react";
 import { site } from "@/lib/site";
-import { treatments, getHome } from "@/lib/content";
+import { treatments } from "@/lib/content";
+import { getHomeBlocks } from "@/lib/pages";
 import ContactSection from "@/components/ContactSection";
 import FAQAccordion from "@/components/blocks/FAQAccordion";
+
+export const revalidate = 60;
 
 const valores = [
   {
@@ -23,9 +26,9 @@ const valores = [
   },
 ];
 
-export default function HomePage() {
-  const home = getHome();
-  const bhaFaqs = (home?.blocks ?? [])
+export default async function HomePage() {
+  const homeBlocks = await getHomeBlocks();
+  const bhaFaqs = homeBlocks
     .filter((b): b is Extract<typeof b, { type: "toggle" }> => b.type === "toggle")
     .map((b) => ({ title: b.title, content: b.content }));
 

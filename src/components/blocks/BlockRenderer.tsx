@@ -77,9 +77,17 @@ export default function BlockRenderer({
       }
       case "paragraph":
         out.push(
-          <p key={i} className="mt-3 leading-relaxed text-warm-gray">
-            {b.text}
-          </p>,
+          b.html ? (
+            <p
+              key={i}
+              className="mt-3 leading-relaxed text-warm-gray"
+              dangerouslySetInnerHTML={{ __html: b.html }}
+            />
+          ) : (
+            <p key={i} className="mt-3 leading-relaxed text-warm-gray">
+              {b.text}
+            </p>
+          ),
         );
         break;
       case "list":
