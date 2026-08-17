@@ -110,9 +110,9 @@ export default async function HomePage() {
       {/* SERVICIOS */}
       <section id="servicios" className="scroll-mt-24 bg-coral py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
-            {/* Columna izquierda: texto + foto de la doctora */}
-            <div>
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+            {/* Columna izquierda: texto + foto (fija al hacer scroll) */}
+            <div className="lg:sticky lg:top-24 lg:self-start">
               <p className="text-sm font-semibold uppercase tracking-wide text-white/85">
                 Los servicios de nuestra clínica dental en Granada
               </p>
